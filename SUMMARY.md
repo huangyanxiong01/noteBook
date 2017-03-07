@@ -1,7 +1,7 @@
 # Summary
 
 * [Introduction](README.md)
-* [ch1-goodParts](chapter1.md)
-* [ch2-garmmar](ch2-garmmar.md)
-* [ch4-function](ch4-function.md)
+* [精华](chapter1.md)
+* [对象](ch2-garmmar.md)
+* [函数](ch4-function.md)
 
