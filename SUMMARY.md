@@ -1,3 +1,6 @@
-# Table of content
+# Summary
 
-* [First Chapter](chapter1.md)
+* [Introduction](README.md)
+* [ch1-goodParts](chapter1.md)
+* [ch2-garmmar](ch2-garmmar.md)
+
