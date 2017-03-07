@@ -67,13 +67,33 @@ curly.getName(); //curly
 因为javascript是一门函数式的面向对象编程语言，所以函数也拥有方法，apply方法在调用函数可以改变内部`this`上下文，并传递一个数组作为参数
 ```js
 function showName(args){
-  console.info('context',this)
+  console.info('name',this.name)
   console.info('args',arguments);
 }
 
 showName.apply({name:'yourName'},[1,2]);
 ``
 
+5.call调用模式
 
+该方法的作用和 apply() 方法类似，只有一个区别，就是call()方法接受的是若干个参数的列表，而apply()方法接受的是一个包含多个参数的数组。
 
+```js
+function showName(ctx,arg1,arg2){
+  console.info('name',this.name)
+  console.info('args',arg1,args2);
+}
+showName.call({name:'yourName'},'args1','args2');
+```
+
+7.bind模式调用
+bind()方法会创建一个新函数。当这个新函数被调用时，bind()的第一个参数将作为它运行时的 this, 之后的一序列参数将会在传递的实参前传入作为它的参数。
+
+```js
+function showName(ctx,arg1,arg2){
+  console.info('name',this.name)
+}
+let myShowName = showName.bind({name:'yourName'});
+myShowName();
+```
 
