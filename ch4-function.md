@@ -67,11 +67,11 @@ curly.getName(); //curly
 因为javascript是一门函数式的面向对象编程语言，所以函数也拥有方法，apply方法在调用函数可以改变内部`this`上下文，并传递一个数组作为参数
 ```js
 function showName(args){
-  console.info('context',this.name)
+  console.info('context',this)
   console.info('args',args);
 }
 
-test.showName({name:'yourName'},[1,2]);
+showName.apply({name:'yourName'},[1,2]);
 ``
 
 
