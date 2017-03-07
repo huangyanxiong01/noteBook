@@ -151,3 +151,35 @@ Function.prototype.method = function(){
   return this;
 }
 ```
+>Note:for in循环放在原型表现不理想
+
+
+## 递归
+递归函数就是会间接或者直接第调用自身的函数
+
+```js
+function loop(x) {
+  if (x >= 10) // "x >= 10" 是退出条件（等同于 "!(x < 10)"）
+    return;
+  // 做些什么
+  loop(x + 1); // 递归调用
+}
+loop(0);
+```
+
+
+## 作用域
+在编程语言中，作用域控制着变量的可见性与生命周期，对于开发人员来说是一项重要的服务，因为它减少命名冲突，并提供内存管理
+```js
+var foo = function(){
+  var a = 3,b = 5;
+  var bar = function(){
+    var b = 7,c =  11;
+    a +=b+c;
+    //此时a=21,b=7,c=11 
+  }
+  //此时a=3,b=5,c=undefined
+  bar();
+  //a=21,b=5
+}
+```
