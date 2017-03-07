@@ -101,4 +101,53 @@ myShowName();
 ```
 
 ## 参数Arguments
-当函数调用时，的会得到一个参数的数组arguments
+当函数调用时，的会得到一个参数的数组arguments,函数可以通过此参数访问所有它被调用时传递给它的参数列表，包括那么没有被分配给声明时定义的多余参数
+```js
+let sum = function (){
+  let sum = 0;
+  for(let i = 0;i < arguments.length;i++){
+    sum+=arguments[i];
+  }
+  return sum;
+}
+sum(1,2,3,5);
+```
+> arguments像是数组，但它并不是真正的数组，因为它没有数组方法
+
+## Return
+在构造函数(使用new调用的函数)中且返回值不是对象，则返回`this`
+
+## 异常
+javascript提供一组异常机制
+```js
+try{
+  throw({name:'TypeError',message:'args1 require is int'});
+}catch(e){
+  console.info(e.stack); 
+}
+```
+
+## 扩充类型功能
+javascipt允许给基本的数据类型扩充功能，包括函数，数组，字符串，数字，正则表达式，布尔值以对象，通过给Functions.prototype的原型添加方法，让函数可以调用该方法
+```js
+Function.prototype.mehtod = function(name,func){
+  this.prototype[name] = func;
+  return this;
+} 
+```
+通过给`Function.prototype`自定义的method来添加方法到原型链上，这样就不用重复写长长的`prototype`。此外还可以是String等其它数据类型
+```js
+String.method('trim',function(){
+  return this.replace(/^\s+|\s+$/g,'');
+})
+```
+基本原型是共用的方法，所以在添加时需要先验证是否已经存在，避免覆盖
+
+```js
+Function.prototype.method = function(){
+  if(!this.prototype[name]){
+    this.prototype[name] = func;
+  }
+  return this;
+}
+```
