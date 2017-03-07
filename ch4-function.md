@@ -39,8 +39,10 @@ var sum = add(1,2);
 此模式调用函数时，this被绑定到全局对象。这是语言设计上的错误，倘若语言设计正确，那么当内部函数调用时，this应该指向外部函数的this变量，这个错误设计的后果就是方法不能利用内部函数来帮助他工作，因为内部函数被绑定了错误的值，解决这个问题，我们可以使用在函数外部声明一个变量并给它赋值为this，那么内部函数就可以通过变量访问到this，很多人都习惯将这个变量命名__this，that
 ```js
 function c(){
+  let that = this;
   function d(){
     console.info(this) //在浏览器中this指向的是window
+    console.info(that) //可以访问到外部函数的this
   };
   d()
 }
@@ -48,7 +50,30 @@ function c(){
 c.call({name:'test'}); 
 ```
 3.构造器调用模式
+javascript是一门基于原型继承的语言，这意味着对象可以直接从其它对象继承属性，该语言是无类的。如果在一个函数的前面带上new来调用，那么就会创建一个prototype连接到新对象上，new也会改变return的行为
+```js
+function Person(name){
+  this.name = name;
+}
+Person.prototype.getName = function(){
+   return this.name;
+}
+
+let curly =  new Person('curly');
+curly.getName(); //curly
+```
+一个函数如果在创建时就希望和通过new关键字调用，那它被称为构造器函数。按照约定们被保存在以大写开头的变量里，如果没有通过new关键字调用构造函数，this就会指向window(在浏览器)，this的属性就会暴露全局中，污染全局环境
 4.apply调用模式
+因为javascript是一门函数式的面向对象编程语言，所以函数也拥有方法，apply方法在调用函数可以改变内部`this`上下文，并传递一个数组作为参数
+```js
+function showName(args){
+  console.info('context',this.name)
+  console.info('args',args);
+}
+
+test.showName({name:'yourName'},[1,2]);
+``
+
 
 
 
