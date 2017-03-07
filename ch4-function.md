@@ -69,6 +69,7 @@ curly.getName(); //curly
 function showName(args){
   console.info('name',this.name)
   console.info('args',arguments);
+  return this.name;
 }
 
 showName.apply({name:'yourName'},[1,2]);
@@ -82,6 +83,7 @@ showName.apply({name:'yourName'},[1,2]);
 function showName(ctx,arg1,arg2){
   console.info('name',this.name)
   console.info('args',arg1,args2);
+  return this.name;
 }
 showName.call({name:'yourName'},'args1','args2');
 ```
@@ -92,8 +94,11 @@ bind()方法会创建一个新函数。当这个新函数被调用时，bind()�
 ```js
 function showName(ctx,arg1,arg2){
   console.info('name',this.name)
+  return this.name;
 }
 let myShowName = showName.bind({name:'yourName'});
 myShowName();
 ```
 
+## 参数Arguments
+当函数调用时，的会得到一个参数的数组arguments
