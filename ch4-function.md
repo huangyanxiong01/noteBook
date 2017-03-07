@@ -68,7 +68,7 @@ curly.getName(); //curly
 ```js
 function showName(args){
   console.info('context',this)
-  console.info('args',args);
+  console.info('args',arguments);
 }
 
 showName.apply({name:'yourName'},[1,2]);
